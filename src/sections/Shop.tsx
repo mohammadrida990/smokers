@@ -4,12 +4,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 
 const Shop = () => {
-  gsap.registerPlugin(ScrollTrigger);
-
   const ref = useRef(null);
   const horizontalRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     if (!ref || !horizontalRef) return;
     const element = ref.current;
     const scrollingElement = horizontalRef.current;

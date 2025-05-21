@@ -3,11 +3,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 
 const Arrival = () => {
-  gsap.registerPlugin(ScrollTrigger);
   const ref = useRef(null);
   const scrollingRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     const element = ref.current;
     const scrollingElement = scrollingRef.current;
     if (!element || !scrollingElement) return;

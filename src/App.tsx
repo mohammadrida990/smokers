@@ -13,14 +13,13 @@ import Footer from "./sections/Footer";
 import { scrollInstanceRef } from "./components/scrollInstance";
 import Loader from "./components/Loader";
 
-gsap.registerPlugin(ScrollTrigger);
-
 function App() {
   const containerRef = useRef<HTMLElement | null>(null);
   const scrollRef = useRef<LocomotiveScroll | null>(null);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     setTimeout(() => {
       setLoaded(true);
     }, 3000);
