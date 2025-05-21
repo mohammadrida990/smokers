@@ -13,7 +13,7 @@ const Home = () => {
         playsInline
         className="w-full h-full object-cover z-0 "
       >
-        <source src="/src/assets/smoking.mp4" type="video/mp4" />
+        <source src="/assets/smoking.mp4" type="video/mp4" />
       </video>
 
       <div className="absolute top-0 left-0 right-0 bottom-0 z-10 bg-black/70" />

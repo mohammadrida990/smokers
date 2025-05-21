@@ -39,21 +39,21 @@ const About = () => {
 
       <div className="md:w-1/2 relative w-[100%] flex justify-center items-center">
         <img
-          src="/src/assets/smoke3.jpg"
+          src="/assets/smoke3.jpg"
           className="w-full h-full md:h-full object-cover"
         />
 
         <img
           data-scroll
           data-scroll-speed="5"
-          src="/src/assets/smoke5.jpg"
+          src="/assets/smoke5.jpg"
           className="md:w-[40%] h-auto absolute right-[95%] bottom-[10%] w-[30%] left-[5%] object-cover"
         />
 
         <img
           data-scroll
           data-scroll-speed="-2"
-          src="/src/assets/smoke1.jpg"
+          src="/assets/smoke1.jpg"
           className="h-auto md:left-[80%] md:bottom-[30%] md:w-[40%] absolute w-[30%] left-[60%] bottom-[20%] object-cover"
         />
       </div>

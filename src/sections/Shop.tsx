@@ -88,14 +88,14 @@ const Shop = () => {
         justify-start items-center pl-[35%] w-auto"
       >
         {[
-          "/src/assets/smoke1.jpg",
-          "/src/assets/smoke2.jpg",
-          "/src/assets/smoke3.jpg",
-          "/src/assets/smoke5.jpg",
-          "/src/assets/smoke1.jpg",
-          "/src/assets/smoke2.jpg",
-          "/src/assets/smoke3.jpg",
-          "/src/assets/smoke5.jpg",
+          "/assets/smoke1.jpg",
+          "/assets/smoke2.jpg",
+          "/assets/smoke3.jpg",
+          "/assets/smoke5.jpg",
+          "/assets/smoke1.jpg",
+          "/assets/smoke2.jpg",
+          "/assets/smoke3.jpg",
+          "/assets/smoke5.jpg",
         ].map((item, index) => (
           <motion.div
             initial={{ filter: "grayscale(100%)" }}

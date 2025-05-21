@@ -63,15 +63,15 @@ const Arrival = () => {
         className="relative w-[60vw] md:w-[25vw] h-auto flex  flex-col mx-0 z-0 overflow-hidden"
       >
         <img
-          src="/src/assets/smoke1.jpg"
+          src="/assets/smoke1.jpg"
           className="w-full h-[100vh] object-contain z-0"
         />
         <img
-          src="/src/assets/smoke2.jpg"
+          src="/assets/smoke2.jpg"
           className="w-full h-[100vh] object-contain z-0"
         />
         <img
-          src="/src/assets/smoke3.jpg"
+          src="/assets/smoke3.jpg"
           className="w-full h-[100vh] object-contain z-0"
         />
       </div>
