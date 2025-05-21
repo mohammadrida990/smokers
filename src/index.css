@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Henny+Penny&family=Kablammo&family=Mystery+Quest&display=swap');
+
+@import "tailwindcss";
+
+@theme inline {
+    --font-henny-penny: Henny Penny;
+}
+
+html, body {
+  height: auto;
+  overflow: auto;
+}
+
