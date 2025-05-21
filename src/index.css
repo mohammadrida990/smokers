@@ -6,3 +6,8 @@
     --font-henny-penny: Henny Penny;
 }
 
+html, body {
+  height: auto;
+  overflow: auto;
+}
+

@@ -12,22 +12,23 @@ import Footer from "./sections/Footer";
 import { scrollInstanceRef } from "./components/scrollInstance";
 import Shop from "./sections/Shop";
 import Loader from "./components/Loader";
+import Arrival from "./sections/Arrival";
 
+gsap.registerPlugin(ScrollTrigger);
 function App() {
   const containerRef = useRef<HTMLElement | null>(null);
   const scrollRef = useRef<LocomotiveScroll | null>(null);
   const [loaded, setLoaded] = useState(false);
 
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
     setTimeout(() => {
       setLoaded(true);
     }, 3000);
-    if (!containerRef.current) return;
 
     const onLoad = () => {
+      if (!containerRef.current) return;
       scrollRef.current = new LocomotiveScroll({
-        el: containerRef.current!,
+        el: containerRef.current,
         smooth: true,
         multiplier: 1,
         class: "is-reveal",
@@ -38,7 +39,7 @@ function App() {
 
       scrollInstanceRef.current = scrollRef.current;
 
-      ScrollTrigger.scrollerProxy(containerRef.current!, {
+      ScrollTrigger.scrollerProxy(containerRef.current, {
         scrollTop(value) {
           return value !== undefined
             ? scrollRef.current?.scrollTo(value)
@@ -56,6 +57,7 @@ function App() {
       });
 
       scrollRef.current.on("scroll", ScrollTrigger.update);
+      // ScrollTrigger.refresh();
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -91,7 +93,7 @@ function App() {
         <About />
         <Shop />
         <Banner />
-        {/* <Arrival /> */}
+        <Arrival />
         <Footer />
       </main>
     </AnimatePresence>

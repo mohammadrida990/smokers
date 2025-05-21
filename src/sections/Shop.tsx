@@ -84,8 +84,8 @@ const Shop = () => {
       <div
         ref={horizontalRef}
         className="
-        absolute left-[33%] h-screen bg-black  flex 
-        justify-start items-center pl-[35%] w-auto"
+        absolute left-[13%] h-screen bg-black  flex 
+        justify-start items-center pl-[1%] w-auto"
       >
         {[
           "/assets/smoke1.jpg",
@@ -106,6 +106,10 @@ const Shop = () => {
             className="flex w-[13rem] md:w-[20rem] mr-10 justify-center items-center flex-col "
           >
             <img
+              data-scroll
+              data-scroll-target="#shop"
+              data-scroll-speed={index * 5}
+              data-scroll-direction="horizontal"
               src={item}
               className="w-[100%] md:h-auto h-[400px]  drop-shadow-[0_4px_6px_rgba(255,191,0,0.9)]"
             />

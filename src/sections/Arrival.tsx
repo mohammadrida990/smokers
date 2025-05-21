@@ -82,17 +82,29 @@ const Arrival = () => {
 
       <div
         ref={scrollingRef}
-        className="relative w-[60vw] md:w-[25vw] h-auto flex  flex-col mx-0 z-0 overflow-hidden"
+        className="relative w-[60vw] md:w-[25vw] h-screen flex  flex-col mx-0 z-0 overflow-hidden"
       >
         <img
+          data-scroll
+          data-scroll-target="#arrival"
+          data-scroll-speed="5"
+          data-scroll-direction="vertical"
           src="/assets/smoke1.jpg"
           className="w-full h-[100vh] object-contain z-0"
         />
-        <img
+        {/* <img
+          data-scroll
+          data-scroll-target="#arrival"
+          data-scroll-direction="vertical"
+          data-scroll-speed="35"
           src="/assets/smoke2.jpg"
           className="w-full h-[100vh] object-contain z-0"
-        />
+        /> */}
         <img
+          data-scroll
+          data-scroll-target="#arrival"
+          data-scroll-direction="vertical"
+          data-scroll-speed="15"
           src="/assets/smoke3.jpg"
           className="w-full h-[100vh] object-contain z-0"
         />
