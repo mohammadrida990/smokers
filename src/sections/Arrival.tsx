@@ -2,12 +2,12 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 
+gsap.registerPlugin(ScrollTrigger);
 const Arrival = () => {
   const ref = useRef(null);
   const scrollingRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
     const element = ref.current;
     const scrollingElement = scrollingRef.current;
     if (!element || !scrollingElement) return;
