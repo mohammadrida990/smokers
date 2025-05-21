@@ -1,25 +1,23 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState, useLayoutEffect } from "react";
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import Home from "./sections/Home";
 import { AnimatePresence } from "framer-motion";
 import About from "./sections/About";
-import Shop from "./sections/Shop";
 import Banner from "./sections/Banner";
-import Arrival from "./sections/Arrival";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Footer from "./sections/Footer";
 import { scrollInstanceRef } from "./components/scrollInstance";
 import Loader from "./components/Loader";
 
-gsap.registerPlugin(ScrollTrigger);
 function App() {
   const containerRef = useRef<HTMLElement | null>(null);
   const scrollRef = useRef<LocomotiveScroll | null>(null);
   const [loaded, setLoaded] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     setTimeout(() => {
       setLoaded(true);
     }, 3000);
@@ -90,11 +88,11 @@ function App() {
 
         <About />
 
-        <Shop />
+        {/* <Shop /> */}
 
         <Banner />
 
-        <Arrival />
+        {/* <Arrival /> */}
 
         <Footer />
       </main>

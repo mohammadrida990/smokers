@@ -3,7 +3,7 @@ const Banner = () => {
     <section className="min-h-screen w-[80vw] flex items-center mx-auto justify-center relative">
       <div
         id="up"
-        className="h-[50vh] flex flex-col items-center justify-center md:justify-evenly"
+        className="flex flex-col h-[100vh] items-center justify-center md:justify-evenly"
       >
         <h1 className="font-bold font-henny-penny text-lg md:text-4xl whitespace-nowrap uppercase leading-none my-2 md:my-0">
           <span

@@ -1,40 +1,62 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 
-gsap.registerPlugin(ScrollTrigger);
 const Arrival = () => {
   const ref = useRef(null);
   const scrollingRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     const element = ref.current;
     const scrollingElement = scrollingRef.current;
     if (!element || !scrollingElement) return;
 
-    const scrollHeight = scrollingElement.scrollHeight;
-    const scrollDistance = scrollHeight - window.innerHeight;
-
-    const t1 = gsap.timeline({
-      scrollTrigger: {
-        trigger: element,
-        start: "top top",
-        end: () => "+=" + window.innerHeight * 2,
-        scroller: "[data-scroll-container]",
-        scrub: true,
-        pin: true,
-        pinSpacing: false,
-      },
-      ease: "none",
-    });
-
-    t1.fromTo(scrollingElement, { y: 0 }, { y: -scrollDistance, ease: "none" });
-    ScrollTrigger.refresh();
-
-    return () => {
-      t1.kill();
-      ScrollTrigger.killAll();
+    const waitForImages = () => {
+      const imgs = scrollingElement.querySelectorAll("img");
+      const promises = Array.from(imgs).map(
+        (img) =>
+          new Promise<void>((resolve) => {
+            if (img.complete) {
+              resolve();
+            } else {
+              img.addEventListener("load", () => resolve());
+              img.addEventListener("error", () => resolve()); // resolve even if error to prevent hang
+            }
+          })
+      );
+      return Promise.all(promises);
     };
+
+    waitForImages().then(() => {
+      const scrollHeight = scrollingElement.scrollHeight;
+      const scrollDistance = scrollHeight - window.innerHeight;
+
+      const t1 = gsap.timeline({
+        scrollTrigger: {
+          trigger: element,
+          start: "top top",
+          end: () => "+=" + window.innerHeight * 2,
+          scroller: "[data-scroll-container]",
+          scrub: true,
+          pin: true,
+          pinSpacing: false,
+        },
+        ease: "none",
+      });
+
+      t1.fromTo(
+        scrollingElement,
+        { y: 0 },
+        { y: -scrollDistance, ease: "none" }
+      );
+      ScrollTrigger.refresh();
+
+      return () => {
+        t1.kill();
+        ScrollTrigger.killAll();
+      };
+    });
   }, []);
 
   return (

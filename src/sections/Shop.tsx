@@ -1,52 +1,69 @@
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 
-gsap.registerPlugin(ScrollTrigger);
 const Shop = () => {
   const ref = useRef(null);
   const horizontalRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
     if (!ref || !horizontalRef) return;
     const element = ref.current;
     const scrollingElement = horizontalRef.current;
     if (!element || !scrollingElement) return;
 
-    const pinWrap = scrollingElement?.offsetWidth;
-
-    const t1 = gsap.timeline({
-      scrollTrigger: {
-        trigger: element,
-        start: "top top",
-        scroller: "[data-scroll-container]",
-        end: pinWrap,
-        scrub: true,
-        pin: true,
-      },
-      ease: "none",
-    });
-
-    t1.to(scrollingElement, {
-      scrollTrigger: {
-        trigger: scrollingElement,
-        start: "top top",
-        end: pinWrap,
-        scroller: "[data-scroll-container]",
-        scrub: true,
-      },
-      x: -pinWrap,
-      ease: "none",
-    });
-
-    ScrollTrigger.refresh();
-    // ScrollTrigger.defaults({ scroller: ".app" });
-
-    return () => {
-      t1.kill();
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+    const waitForImages = () => {
+      const imgs = scrollingElement.querySelectorAll("img");
+      const promises = Array.from(imgs).map(
+        (img) =>
+          new Promise<void>((resolve) => {
+            if (img.complete) {
+              resolve();
+            } else {
+              img.addEventListener("load", () => resolve());
+              img.addEventListener("error", () => resolve()); // resolve even if error to prevent hang
+            }
+          })
+      );
+      return Promise.all(promises);
     };
+
+    waitForImages().then(() => {
+      const pinWrap = scrollingElement?.offsetWidth;
+      const t1 = gsap.timeline({
+        scrollTrigger: {
+          trigger: element,
+          start: "top top",
+          scroller: "[data-scroll-container]",
+          end: pinWrap,
+          scrub: true,
+          pin: true,
+        },
+        ease: "none",
+      });
+
+      t1.to(scrollingElement, {
+        scrollTrigger: {
+          trigger: scrollingElement,
+          start: "top top",
+          end: pinWrap,
+          scroller: "[data-scroll-container]",
+          scrub: true,
+        },
+        x: -pinWrap,
+        ease: "none",
+      });
+
+      ScrollTrigger.refresh();
+      return () => {
+        t1.kill();
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      };
+    });
+
+    // ScrollTrigger.defaults({ scroller: ".app" });
   }, []);
 
   return (
